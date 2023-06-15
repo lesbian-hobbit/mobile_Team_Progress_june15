@@ -8,7 +8,6 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from "react-native";
-import { LinearGradient } from 'expo-linear-gradient';
 import { auth, db } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -129,19 +128,6 @@ const Login = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      {/*<TouchableOpacity
-        style={styles.button}
-        onPress={() => handleRegister(email, password)}
-      >
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>*/}
-      {/* <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleRegister(email, password)}
-      >
-        <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity> */}
-
 
       <TouchableOpacity
         style={styles.button}

@@ -5,6 +5,7 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
 
 import { auth, db } from "../firebase";
@@ -94,8 +95,20 @@ const Registrationpage = ({ navigation }) => {
     // You can replace the console.log statements with your actual login implementation
   };
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+    <View style={{flex: 1,
+      justifyContent: "center",
+      }}>
+      <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
+      <View style={styles.logoContainer}>
+       <ImageBackground
+        style={styles.logo}
+        source={require('../assets/blinc.png')}
+       />
+       </View>
+       <View style={styles.logoName}>
+       <Text style={styles.logoText}>Bitshares Labs Inc</Text>
+       </View>
+      <Text style={styles.title}>Register</Text>
       <TextInput
         style={styles.input}
         placeholder="Email"
@@ -131,12 +144,7 @@ const Registrationpage = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Register</Text>
       </TouchableOpacity>
-      {/* <TouchableOpacity
-        style={styles.button}
-        onPress={() => handleLogin(email, password)}
-      >
-        <Text style={styles.buttonText}>Login</Text>
-      </TouchableOpacity> */}
+      </ImageBackground>
     </View>
   );
 };
@@ -153,19 +161,50 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     textAlign: "center",
   },
+  image:{
+    flex: 1,
+    justifyContent: 'center'
+  },
+  logoContainer:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingBottom:0,
+  },  
+  logo: {
+    width: 250, 
+    height: 250, 
+    flexDirection: 'column',
+  },
+  logoName: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 20
+  },
+  logoText:{
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 19,
+    opacity: 0.6,
+   
+  },
   input: {
     height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "black",
+    borderWidth: 2,
     borderRadius: 5,
     marginBottom: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    margin: 10,
+    fontFamily: 'Arial',
   },
   button: {
-    margin: 10,
+    marginHorizontal: 80,
     backgroundColor: "black",
     paddingVertical: 10,
     borderRadius: 5,
+    marginTop: 15,
   },
   buttonText: {
     color: "white",

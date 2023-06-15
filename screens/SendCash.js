@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, StyleSheet, TouchableOpacity, TextInput } from "react-native";
+import { View, 
+         Text, 
+         StyleSheet, 
+         TouchableOpacity, 
+         TextInput,
+         ImageBackground } from "react-native";
 import {
   collection,
   query,
@@ -16,6 +21,7 @@ import { onAuthStateChanged, signOut } from "firebase/auth";
 const Dashboard = ({ route, navigation }) => {
   const [balance, setBalance] = useState(5000); // Initial balance
   const [email, setEmail] = useState();
+  //const [fullname, setFullname] = useState();
   const [uids, setUid] = useState();
   const [userInfo, setUserInfo] = useState([]);
 
@@ -34,7 +40,7 @@ const Dashboard = ({ route, navigation }) => {
         const newWallet = sfDoc.data().wallet + Number(amount);
         transaction.update(sfDocRef, { wallet: newWallet });
       });
-      console.log("Transaction successfully committed!");
+      alert('Transaction Successfully Sent!')
     } catch (e) {
       console.log("Transaction failed: ", e);
     }
@@ -81,11 +87,19 @@ const Dashboard = ({ route, navigation }) => {
     });
   }
   return (
-    <View style={styles.container}>
+    <View  style={{flex: 1,
+      justifyContent: "center",
+      }}>
+      <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
+      <View style={styles.welcome}>
       <Text style={styles.welcomeText}>Welcome, {email}</Text>
+      <Text style={styles.balanceText}>Current Balance</Text>
+      <Text style={styles.amountText}>$ {userInfo.wallet}</Text>
+      </View>
+      
       <View style={styles.balanceContainer}>
-        <Text style={styles.balanceText}>Balance</Text>
-        <Text style={styles.amountText}>$ {userInfo.wallet}</Text>
+       
+        
       </View>
       <TextInput
         style={styles.input}
@@ -106,13 +120,7 @@ const Dashboard = ({ route, navigation }) => {
       >
         <Text style={styles.transferButtonText}>Send Funds</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.transferButton}
-        onPress={() => handleSignOut()}
-      >
-        <Text style={styles.transferButtonText}>Sign Out</Text>
-      </TouchableOpacity>
+      </ImageBackground>
     </View>
   );
 };
@@ -123,16 +131,24 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
+  welcome:{
+    justifyContent: 'center',
+    alignItems:'center',
+    flexDirection: 'column'
+    
+  },
   balanceContainer: {
     marginBottom: 20,
   },
   input: {
     height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "black",
+    borderWidth: 2,
     borderRadius: 5,
     marginBottom: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    margin: 10,
+    fontFamily: 'Arial',
   },
   welcomeText: {
     fontSize: 24,
@@ -145,21 +161,25 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     marginBottom: 10,
   },
+  image:{
+    flex: 1,
+    justifyContent: 'center'
+  },
   amountText: {
     fontSize: 18,
   },
   transferButton: {
-    margin:10,
+    marginHorizontal: 80,
     backgroundColor: "black",
     paddingVertical: 10,
-    paddingHorizontal: 20,
     borderRadius: 5,
+    marginTop: 15,
   },
   transferButtonText: {
-
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
+    textAlign: "center",
   },
 });
 

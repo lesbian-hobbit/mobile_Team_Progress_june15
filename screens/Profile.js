@@ -1,5 +1,9 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, 
+         TouchableOpacity, 
+         Text, 
+         StyleSheet, 
+         ImageBackground, } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -15,12 +19,10 @@ export default function Profile() {
   };
 
   return (
-    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
-      <View style={styles.container}>
-        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-          <Ionicons name="exit" size={30} color="black" />
-        </TouchableOpacity>
-
+      <View style={{flex: 1,
+        justifyContent: "center",
+        }}>
+        <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
         <View style={styles.userInfo}>
           <Text style={styles.userName}>Hum Burglar</Text>
           <Text style={styles.balance}>Available Balance: $69</Text>
@@ -72,10 +74,10 @@ export default function Profile() {
             <Ionicons name="md-log-out-sharp" size={60} color="white" />
             <Text style={styles.cardText}>Log Out</Text>
           </TouchableOpacity>
-
         </View>
+        </ImageBackground>
       </View>
-    </ScrollView>
+    
   );
 }
 
@@ -123,6 +125,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginHorizontal: 10,
+  },
+  image:{
+    flex: 1,
+    justifyContent: 'center'
   },
   card: {
     width: 150,

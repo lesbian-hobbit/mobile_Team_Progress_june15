@@ -1,4 +1,11 @@
-import { View, Text, FlatList, StyleSheet, Pressable, TouchableOpacity, Button } from 'react-native';
+import { View, 
+         Text, 
+         FlatList, 
+         StyleSheet, 
+         Pressable, 
+         TouchableOpacity, 
+         Button,
+         ImageBackground } from 'react-native';
 import React, { useState, useEffect } from 'react';
 import { auth, firebase } from '../firebase';
 import { collection, setDoc, doc, getDoc, Firestore } from 'firebase/firestore'
@@ -7,6 +14,8 @@ import { useNavigation } from '@react-navigation/core'
 import { Ionicons } from "@expo/vector-icons"
 import { getAuth } from 'firebase/auth';
 import { onAuthStateChanged, signOut } from "firebase/auth";
+import { AntDesign } from '@expo/vector-icons';
+
 
 const MainDashboard = () => {
   const [userInfo, setUserInfo] = useState([]);
@@ -69,10 +78,15 @@ const MainDashboard = () => {
   }, []);
 
   return (
-    <View style={styles.container}>
-      <View style={[styles.header, { flexDirection: 'row', justifyContent: 'space-between' }]}>
+    <View style={{flex: 1,
+      justifyContent: "center",
+      }}>
+      <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
+     
+      {/*balance tab*/}
+      <View style={[styles.header, { flexDirection: 'row', justifyContent: 'space-between', padding: 10}]}>
         <View>
-          <Text style={{ fontWeight: 'bold', color: 'white' }}>
+          <Text style={{ fontWeight: 'bold', color: 'white', }}>
             Balance
           </Text>
           <Text style={[styles.regularText, { color: "white" }]}>{userInfo.wallet}</Text>
@@ -81,19 +95,24 @@ const MainDashboard = () => {
           <Ionicons name="reload-outline" size={15} color="white" />
         </TouchableOpacity>
       </View>
-
+      {/*balance tab*/}
+      <View style={styles.welcomeContainer}>
+        <Text style={styles.welcomeText}>Welcome, {email}</Text>
+      </View>
       <View
         style={{
           borderBottomColor: 'lightgray',
           borderBottomWidth: StyleSheet.hairlineWidth,
           margin: 20,
-        }}
-      />
+        }}></View>
+      
+     
+      
 
       <View style={styles.buttonsContainer}>
         <TouchableOpacity style={styles.mediumButtonContainer} onPress={onPress}>
           <View style={styles.circleContainer}>
-            <View style={[styles.circle, { width: 100, height: 100 }]}>
+            <View style={[styles.circle, { width: 100, height: 100, }]}>
               <Ionicons name="send" size={30} color="white" />
               <Text style={[styles.titleText, styles.boldText, { color: 'white', marginTop: 5, textAlign: 'center' }]}>Send</Text>
             </View>
@@ -102,7 +121,7 @@ const MainDashboard = () => {
 
         <TouchableOpacity style={styles.mediumButtonContainer} onPress={onPress3}>
           <View style={styles.circleContainer}>
-            <View style={[styles.circle, { width: 100, height: 100 }]}>
+            <View style={[styles.circle, { width: 100, height: 100, }]}>
               <Ionicons name="cash-outline" size={30} color="white" />
               <Text style={[styles.titleText, styles.boldText, { color: 'white', marginTop: 5, textAlign: 'center' }]}>Receive</Text>
             </View>
@@ -138,6 +157,25 @@ const MainDashboard = () => {
           </TouchableOpacity>
         </View>
       </View>
+      </ImageBackground>
+
+        {/*}
+      <View style={styles.footbar}>
+        <TouchableOpacity style={styles.iconContainer}>
+        <AntDesign name="message1" size={24} color="black" />
+          <Text style={styles.iconLabel}>Inbox</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer}>
+          <Ionicons name="md-qr-code" size={24} color="black" />
+          <Text style={styles.iconLabel}>QR Code</Text>
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer}>
+          <Ionicons name="md-time" size={24} color="black" />
+          <Text style={styles.iconLabel}>Transaction History</Text>
+        </TouchableOpacity>
+      </View>
+          */}
+
     </View>
   );
 };
@@ -157,6 +195,20 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'black',
   },
+  welcomeText:{
+    color: "white",
+    fontSize: 25,
+    fontWeight: "bold",
+    textAlign: "center",
+   
+  },
+  welcomeContainer:{
+    padding: 10
+  },
+  image:{
+    flex: 1,
+    //justifyContent: 'center'
+  },
   titleText: {
     fontSize: 12,
     color: 'white',
@@ -175,6 +227,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     marginBottom: 20,
     justifyContent: 'space-evenly',
+   
   },
   mediumButtonContainer: {
     height: 90,
@@ -183,10 +236,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
-    borderRadius: 20,
+    borderRadius: 100,
     alignContent: 'center',
     flexWrap: 'wrap',
     backgroundColor: 'white',
+    
   },
   circle: {
     width: 40,
@@ -196,6 +250,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 5,
+
   },
   smallButtonContainer: {
     height: 50,
@@ -213,4 +268,20 @@ const styles = StyleSheet.create({
   boldText: {
     fontWeight: 'bold',
   },
+  /*footbar: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: 50,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    borderTopColor: 'lightgray',
+    backgroundColor: 'white',
+  },
+  iconContainer: {
+    alignItems: 'center',
+  },
+  iconLabel: {
+    fontSize: 12,
+    marginTop: 2,
+  },*/
 });
