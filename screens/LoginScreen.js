@@ -6,8 +6,9 @@ import {
   TextInput,
   StyleSheet,
   TouchableOpacity,
+  ImageBackground,
 } from "react-native";
-
+import { LinearGradient } from 'expo-linear-gradient';
 import { auth, db } from "../firebase";
 import {
   signInWithEmailAndPassword,
@@ -96,11 +97,26 @@ const Login = ({ navigation }) => {
     // You can replace the console.log statements with your actual login implementation
   };
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <View style={{flex: 1,
+        justifyContent: "center",
+        }}>
+       <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
+       <View style={styles.logoContainer}>
+       <ImageBackground
+        style={styles.logo}
+        source={require('../assets/blinc.png')}
+       />
+       </View>
+       <View style={styles.logoName}>
+       <Text style={styles.logoText}>Bitshares Labs Inc</Text>
+       </View>
+       
+       <Text style={styles.title}>Welcome to C D J N</Text>
+    
       <TextInput
         style={styles.input}
         placeholder="Email"
+       
         value={email}
         onChangeText={setEmail}
         keyboardType="email-address"
@@ -113,12 +129,12 @@ const Login = ({ navigation }) => {
         onChangeText={setPassword}
         secureTextEntry
       />
-      <TouchableOpacity
+      {/*<TouchableOpacity
         style={styles.button}
         onPress={() => handleRegister(email, password)}
       >
         <Text style={styles.buttonText}>Register</Text>
-      </TouchableOpacity>
+      </TouchableOpacity>*/}
       {/* <TouchableOpacity
         style={styles.button}
         onPress={() => handleRegister(email, password)}
@@ -133,16 +149,16 @@ const Login = ({ navigation }) => {
       >
         <Text style={styles.buttonText}>Login</Text>
       </TouchableOpacity>
-
-      <TouchableOpacity style={styles.button} onPress={onPress}>
-          
-            <View style={styles.buttonText}>
+      <Text style={{marginTop: 10, textAlign:'center',}}>Already have an account?</Text>
+      <TouchableOpacity onPress={onPress}>
+          <View style={styles.buttonText}>
               
-              <Text style={styles.buttonText}>Signup for an account</Text>
-            
+              <Text style={styles.buttonTextSignUp}>Signup here!</Text>
           </View>
-          <Text style={[styles.titleText, { color: 'black' }]}>Send</Text>
         </TouchableOpacity>
+
+        </ImageBackground>
+        
     </View>
   );
 };
@@ -153,31 +169,73 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     paddingHorizontal: 20,
   },
+  logoContainer:{
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    paddingBottom:0,
+  },  
+  logo: {
+    width: 250, 
+    height: 250, 
+    flexDirection: 'column',
+  },
+  logoName: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: 20
+  },
+  logoText:{
+    color: 'black',
+    fontWeight: 'bold',
+    fontSize: 19,
+    opacity: 0.6,
+   
+  },
   title: {
-    fontSize: 24,
+    fontSize: 40,
     fontWeight: "bold",
-    marginBottom: 20,
+    padding: 20,
     textAlign: "center",
+    fontFamily: 'Roboto'
+  },
+  image:{
+    flex: 1,
+    justifyContent: 'center'
   },
   input: {
     height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
+    borderColor: "black",
+    borderWidth: 2,
     borderRadius: 5,
     marginBottom: 10,
-    paddingHorizontal: 10,
+    paddingHorizontal: 15,
+    margin: 10,
+    fontFamily: 'Arial',
+    
+
   },
   button: {
-    margin: 10,
+    marginHorizontal: 80,
     backgroundColor: "black",
     paddingVertical: 10,
     borderRadius: 5,
+    marginTop: 15,
   },
   buttonText: {
     color: "white",
     fontSize: 16,
     fontWeight: "bold",
     textAlign: "center",
+  },
+  buttonTextSignUp: {
+    marginTop: 10,
+    color: "black",
+    fontSize: 13,
+    fontWeight: "bold",
+    textAlign: "center",
+    textDecorationLine: 'underline'
   },
  
     container: {

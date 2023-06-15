@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { View, TouchableOpacity, Text, StyleSheet, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import { AntDesign } from '@expo/vector-icons';
 
 export default function Profile() {
   const handleLogout = () => {
@@ -14,56 +15,74 @@ export default function Profile() {
   };
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
-        <Ionicons name="exit" size={30} color="black" />
-      </TouchableOpacity>
+    <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <View style={styles.container}>
+        <TouchableOpacity style={styles.logoutButton} onPress={handleLogout}>
+          <Ionicons name="exit" size={30} color="black" />
+        </TouchableOpacity>
 
-      <Text style={styles.title}>Cash System</Text>
+        <View style={styles.userInfo}>
+          <Text style={styles.userName}>Hum Burglar</Text>
+          <Text style={styles.balance}>Available Balance: $69</Text>
+        </View>
 
-      <View style={styles.userInfo}>
-        <Text style={styles.userName}>John Doe</Text>
-        <Text style={styles.balance}>Available Balance: $500</Text>
+        <View style={styles.cardContainer}>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 1')}
+          >
+            <AntDesign name="profile" size={60} color="white" />
+            <Text style={styles.cardText}>Edit Profile</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 2')}
+          >
+            <Ionicons name="qr-code" size={60} color="white" />
+            <Text style={styles.cardText}>My QR Codes</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 3')}
+          >
+            <Ionicons name="ios-settings-outline" size={60} color="white" />
+            <Text style={styles.cardText}>Settings</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 4')}
+          >
+            <Ionicons name="notifications-circle-outline" size={60} color="white" />
+            <Text style={styles.cardText}>Notifications</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 5')}
+          >
+            <Ionicons name="ios-chatbubbles" size={60} color="white" />
+            <Text style={styles.cardText}>Customer Service</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={styles.card}
+            onPress={() => handleCardPress('Card 6')}
+          >
+            <Ionicons name="md-log-out-sharp" size={60} color="white" />
+            <Text style={styles.cardText}>Log Out</Text>
+          </TouchableOpacity>
+
+        </View>
       </View>
-
-      <View style={styles.cardContainer}>
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => handleCardPress('Card 1')}
-        >
-          <Ionicons name="ios-speedometer" size={60} color="white" />
-          <Text style={styles.cardText}>Card 1</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => handleCardPress('Card 2')}
-        >
-          <Ionicons name="ios-alarm" size={60} color="white" />
-          <Text style={styles.cardText}>Card 2</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => handleCardPress('Card 3')}
-        >
-          <Ionicons name="ios-wallet" size={60} color="white" />
-          <Text style={styles.cardText}>Card 3</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={styles.card}
-          onPress={() => handleCardPress('Card 4')}
-        >
-          <Ionicons name="ios-chatbubbles" size={60} color="white" />
-          <Text style={styles.cardText}>Card 4</Text>
-        </TouchableOpacity>
-      </View>
-    </View>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
+  scrollViewContainer: {
+    flexGrow: 1,
+  },
   container: {
     flex: 1,
     justifyContent: 'center',
@@ -108,7 +127,7 @@ const styles = StyleSheet.create({
   card: {
     width: 150,
     height: 150,
-    backgroundColor: '#4F6D7A',
+    backgroundColor: 'black',
     borderRadius: 10,
     justifyContent: 'center',
     alignItems: 'center',
