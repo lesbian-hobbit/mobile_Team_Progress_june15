@@ -1,4 +1,4 @@
-import { View, Text, FlatList,ActivityIndicator, StyleSheet,Alert, Pressable, TextInput, Button, Touchable, TouchableOpacity, KeyboardAvoidingView } from 'react-native';
+import { View, Text, FlatList,ActivityIndicator, StyleSheet,Alert, Pressable, TextInput, Button, Touchable, TouchableOpacity, KeyboardAvoidingView, ImageBackground } from 'react-native';
 import React ,{useState, useEffect} from 'react';
 import { auth, firebase } from '../firebase';
 import {collection, setDoc, doc, getDoc, querySnapshot, documentSnapshot, getDocs, snapshotEqual, onSnapshot} from 'firebase/firestore'
@@ -80,7 +80,10 @@ const RecieveCash = () => {
 
 
     return(
-        <View style={styles.container}>
+        <View style={{flex: 1,
+          justifyContent: "center",
+          }}>
+          <ImageBackground source={require('../assets/background.jpg')} resizeMode="cover" style={styles.image}>
             <View style={styles.userInfo}>
             <Text style={styles.userId }>
                 id: {uids}
@@ -108,6 +111,7 @@ const RecieveCash = () => {
             
             </Text>
         </View>
+        </ImageBackground>
         </View>
         
     )
@@ -131,6 +135,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         textAlign: 'center',
         color: "black",
+      },
+      image:{
+        flex: 1,
+        justifyContent: 'center'
       },
       container: {
         flex: 1,
