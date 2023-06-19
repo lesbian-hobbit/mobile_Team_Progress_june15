@@ -21,6 +21,10 @@ const MainDashboard = () => {
   const [userInfo, setUserInfo] = useState([]);
   const navigation = useNavigation();
 
+
+
+  
+
   const onPress = () => {
     navigation.navigate("Send");
   };
@@ -45,6 +49,10 @@ const MainDashboard = () => {
   const onPress4 = () => {
     navigation.navigate("Currency");
   };
+
+  const onPress5 = () => {
+    navigation.navigate("Logs")
+  }
 
   const [balance, setBalance] = useState(5000); // Initial balance
   const [email, setEmail] = useState();
@@ -127,7 +135,19 @@ const MainDashboard = () => {
             </View>
           </View>
         </TouchableOpacity>
+
+        <TouchableOpacity style={styles.mediumButtonContainer} onPress={onPress5}>
+          <View style={styles.circleContainer}>
+            <View style={[styles.circle, { width: 100, height: 100, }]}>
+              <Ionicons name="cash-outline" size={30} color="white" />
+              <Text style={[styles.titleText, styles.boldText, { color: 'white', marginTop: 5, textAlign: 'center' }]}>Logs</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+
       </View>
+
+      
 
       <View style={styles.buttonsContainer}>
         <View style={{ marginRight: 10 }}>
@@ -136,6 +156,7 @@ const MainDashboard = () => {
               <Ionicons name="person-outline" size={45} color="white" />
               <Text style={[styles.titleText, styles.boldText, { color: 'white', marginTop: 5, textAlign: 'center' }]}>Profile</Text>
             </View>
+            
           </TouchableOpacity>
         </View>
 
@@ -154,10 +175,12 @@ const MainDashboard = () => {
               <Ionicons name="log-out-outline" size={45} color="white" />
               <Text style={[styles.titleText, styles.boldText, { color: 'white', marginTop: 5, textAlign: 'center' }]}>Logout</Text>
             </View>
+            
           </TouchableOpacity>
         </View>
       </View>
       </ImageBackground>
+      
 
         {/*}
       <View style={styles.footbar}>

@@ -11,7 +11,7 @@ import Profile from './screens/Profile';
 import RecieveCash from './screens/RecieveCash';
 import Currency from './screens/Currency';
 import Registrationpage from './screens/Registrationpage';
-
+import Logs from './screens/Logs';
 
 const Stack = createNativeStackNavigator();
 
@@ -28,6 +28,7 @@ export default function App() {
         <Stack.Screen name="Recieve" component={RecieveCash}/>
         <Stack.Screen name="Currency" component={Currency}/>
         <Stack.Screen name="Registrationpage" component={Registrationpage}/>
+        <Stack.Screen name="Logs" component={Logs}/>
       </Stack.Navigator>
     </NavigationContainer>
   );

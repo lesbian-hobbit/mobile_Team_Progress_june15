@@ -41,7 +41,9 @@ const Dashboard = ({ route, navigation }) => {
         transaction.update(sfDocRef, { wallet: newWallet });
       });
       alert('Transaction Successfully Sent!')
+      console.log('Transaction Successfully Sent!')
     } catch (e) {
+      alert("Transaction failed: ", e);
       console.log("Transaction failed: ", e);
     }
   };
